@@ -1,0 +1,4 @@
+# Ignore everything except this file and the source tree.
+/*
+!/.gitignore
+!/src/
