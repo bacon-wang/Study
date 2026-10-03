@@ -1,3 +1,7 @@
+import com.apple.demo1.ClassA;
+
+import java.util.Scanner;
+
 public class Main {
     public static void main1(String[] args) {
         // 创建第一个 Person 对象
@@ -35,9 +39,17 @@ public class Main {
         phone2.showInfo();
     }
 
-    public static void main(String[] args) {
+    public static void main4(String[] args) {
         Person p = new Person("bei", 22);
         System.out.println(p); // 重写
+    }
+
+    public static void main5(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    }
+
+    public static void main(String[] args) {
+        ClassA obj = new ClassA();
     }
 }
 
