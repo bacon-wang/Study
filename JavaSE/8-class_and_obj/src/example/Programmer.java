@@ -1,6 +1,6 @@
 package example;
 
-final public class Programmer extends Employee {
+public class Programmer extends Employee {
     public Programmer(String name, int age, String employeeId) {
         super(name, age, employeeId); // 调用父类构造
     }
