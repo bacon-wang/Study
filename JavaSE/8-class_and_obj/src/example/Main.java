@@ -92,7 +92,7 @@ public class Main {
         p4.returnMoney();
     }
 
-    public static void main(String[] args) {
+    public static void main8(String[] args) {
         Payment p1 = new AlipayPayment(10);
 
         // 预期外的操作
@@ -107,4 +107,12 @@ public class Main {
             System.out.println("其他支付方式暂无返现");
         }
     }
+
+    public static void main(String[] args) {
+        Flyable[] flyable = {new Duck(), new Plane(), new Chinese()};
+        for (Flyable f : flyable) {
+            f.fly();
+        }
+    }
+
 }

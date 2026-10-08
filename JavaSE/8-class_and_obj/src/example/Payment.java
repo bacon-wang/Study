@@ -1,6 +1,5 @@
 package example;
 
-// 抽象父类：定义支付的统一接口
 abstract class Payment {
     protected double amount;
 
@@ -12,7 +11,6 @@ abstract class Payment {
     public abstract void pay();
 }
 
-// 子类：各自实现自己的支付逻辑
 class AlipayPayment extends Payment {
     public AlipayPayment(double amount) {
         super(amount);
