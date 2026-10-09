@@ -240,7 +240,7 @@ public class Main {
         System.out.println(Arrays.toString(students));
     }
 
-    public static void main(String[] args) throws CloneNotSupportedException {
+    public static void main13(String[] args) throws CloneNotSupportedException {
         // clone 示例
         String[] strings1 = new String[] { new String("abc"), new String("edf")};
         String[] strings2 = strings1.clone();
@@ -258,4 +258,66 @@ public class Main {
         System.out.println(s1.project.name);
         System.out.println(s2.project.name);
      }
+
+    public static void main14(String[] args) {
+        Car car = new Car();
+        Car.Engine engine = car.new Engine(); // 通过外部类实例创建内部类实例
+
+        car.checkStatus();
+        engine.start();
+        car.checkStatus();
+        engine.stop();
+        car.checkStatus();
+    }
+
+    public static void main15(String[] args) {
+        Car car = new Car();
+        Car.Engine engine = car.new Engine(); // 通过外部类实例创建内部类实例
+
+        engine.test();
+        System.out.println("==========");
+        car.test();
+    }
+
+    public static void main16(String[] args) {
+        Car c = new Car();
+        Car.Test test = new Car.Test(); // 外部类名.内部类() -- 创建内部类实例
+        test.test();
+    }
+
+    public static void main17(String[] args) {
+        new Car().test2();
+    }
+
+    void func() {
+        System.out.println("Main.func called");
+    }
+
+    public static void main18(String[] args) {
+        new Main() {
+            @Override
+            void func() {
+                super.func();
+                System.out.println("Main.Main.func called (overwritten)");
+            }
+        }.func();
+    }
+
+    public static void main(String[] args) {
+        // 可以视作：匿名类实现了 Flyable 接口
+        new Flyable() {
+            @Override
+            public void fly() {
+                System.out.println("匿名内部类重写了 fly 方法");
+            }
+        }.fly();
+    }
+
+//    new 接口名() {
+//        // 方法实现
+//    };
+
+//    new 父类名(构造参数) {
+//        // 方法重写
+//    };
 }
