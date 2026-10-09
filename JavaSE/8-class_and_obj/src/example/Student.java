@@ -1,14 +1,40 @@
 package example;
 
-public class Student implements Comparable<Student> {
+class Project implements Cloneable {
+    public String name;
+    public String direction;
+    // ...
+
+
+    public Project(String name, String direction) {
+        this.name = name;
+        this.direction = direction;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+
+public class Student implements Comparable<Student>, Cloneable {
     public String name;
     public int age;
     public double score;
+    public Project project;
 
     public Student(String name, int age, double score) {
         this.name = name;
         this.age = age;
         this.score = score;
+        this.project = new Project("默认项目名", "默认方向");
+    }
+
+    public Student(String name, int age, double score, String projectName, String projectDirection) {
+        this.name = name;
+        this.age = age;
+        this.score = score;
+        this.project = new Project(projectName, projectDirection);
     }
 
     @Override
@@ -29,4 +55,17 @@ public class Student implements Comparable<Student> {
         return -1;
     }
 
+    // 浅拷贝（Project 对象没有深拷贝）
+//    @Override
+//    protected Object clone() throws CloneNotSupportedException {
+//        return super.clone();
+//    }
+
+    // 深拷贝
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Student tmp = (Student) super.clone();
+        tmp.project = (Project) this.project.clone();
+        return tmp;
+    }
 }

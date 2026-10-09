@@ -217,7 +217,7 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main12(String[] args) {
         Student s1 = new Student("zhangsan", 18, 99.3);
         Student s2 = new Student("l isi", 20, 82.4);
         Student s3 = new Student("wangwu", 8, 73.9);
@@ -240,4 +240,22 @@ public class Main {
         System.out.println(Arrays.toString(students));
     }
 
+    public static void main(String[] args) throws CloneNotSupportedException {
+        // clone 示例
+        String[] strings1 = new String[] { new String("abc"), new String("edf")};
+        String[] strings2 = strings1.clone();
+        System.out.println(strings1);
+        System.out.println(strings2);
+
+        // 自定义类型 clone 示例
+        Student s1 = new Student("zhangsan", 18, 99.3);
+        Student s2 = (Student) s1.clone();
+
+        System.out.println(s1.project.name);
+        System.out.println(s2.project.name);
+        System.out.println("===============");
+        s1.project.name = "changed";
+        System.out.println(s1.project.name);
+        System.out.println(s2.project.name);
+     }
 }
