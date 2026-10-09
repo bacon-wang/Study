@@ -11,10 +11,4 @@ public class Frog implements Amphibious {
     public void walk() {
 
     }
-
-    @Override
-    public void amphibiousFunc() {
-
-    }
-
 }
