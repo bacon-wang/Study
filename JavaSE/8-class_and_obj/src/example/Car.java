@@ -1,9 +1,25 @@
 package example;
 
+import java.util.Objects;
+
 public class Car {
     private String brand = "Tesla";
     private boolean engineRunning = false;
     private int testNum = 1;
+
+    public Car() {}
+
+    public Car(String brand) {
+        this.brand = brand;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
 
     class Engine {
         private int testNum = 10;
@@ -50,5 +66,32 @@ public class Car {
         }
 
         new Test2().func();
+    }
+
+    // 自己重写
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (!(obj instanceof Car)) return false; // 不打印日志也不做其他处理
+//        if (this == obj) return true;
+//
+//        return Objects.equals(this.brand, ((Car) obj).brand);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(brand);
+//    }
+
+    // 编译器生成
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return engineRunning == car.engineRunning && testNum == car.testNum && Objects.equals(brand, car.brand);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, engineRunning, testNum);
     }
 }

@@ -18,7 +18,7 @@ public class Main {
 //        a = 20; // Cannot assign a value to final variable 'a'
     }
 
-    public static void func(Employee e) {
+    public static void func1(Employee e) {
         e.work();
     }
 
@@ -303,7 +303,7 @@ public class Main {
         }.func();
     }
 
-    public static void main(String[] args) {
+    public static void main19(String[] args) {
         // 可以视作：匿名类实现了 Flyable 接口
         new Flyable() {
             @Override
@@ -320,4 +320,54 @@ public class Main {
 //    new 父类名(构造参数) {
 //        // 方法重写
 //    };
+
+    public static void func(Object o) {
+        System.out.println(o);
+    }
+
+    public static void main20(String[] args) {
+        func(123);
+        func(1.23);
+        func("123");
+        func(new Car());
+        func(new Programmer("bei", 12, "123"));
+    }
+
+    public static void main21(String[] args) {
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        System.out.println(car1.equals(car2));
+
+        car2 = car1;
+
+        System.out.println(car1.equals(car2)); // 调用 Object 默认的 equals
+
+        System.out.println("------------");
+
+        String str1 = "123";
+        String str2 = "123";
+        System.out.println(str1.equals(str2)); // 调用 String 重写的 equals：逐字符比较
+    }
+
+    public static void main22(String[] args) {
+        Car car1 = new Car();
+        Car car2 = new Car("Benz");
+
+        System.out.println(car1.equals(car2)); // 调用 Car 重写的 equals
+
+        car2.setBrand(car1.getBrand());
+        System.out.println(car1.equals(car2)); // 调用 Car 重写的 equals
+
+    }
+
+    public static void main(String[] args) {
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car3 = new Car("Benz");
+
+        System.out.println(car1.hashCode());
+        System.out.println(car2.hashCode());
+        System.out.println(car3.hashCode());
+    }
 }
