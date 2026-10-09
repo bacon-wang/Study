@@ -15,4 +15,9 @@ public class Duck implements Flyable, Swimmable, Walkable {
     public void walk() {
 
     }
+
+    @Override
+    public void move() {
+        Swimmable.super.move();
+    }
 }

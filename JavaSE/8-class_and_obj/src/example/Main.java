@@ -1,5 +1,9 @@
 package example;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class Main {
     public static void main1(String[] args) {
         Programmer p = new Programmer("bei", 23, "0024");
@@ -108,11 +112,132 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main9(String[] args) {
         Flyable[] flyable = {new Duck(), new Plane(), new Chinese()};
         for (Flyable f : flyable) {
             f.fly();
         }
+    }
+
+    public static void compare1(Student s1, Student s2) {
+        int ret = s1.compareTo(s2);
+        if (ret > 0) {
+            System.out.println(s1.name + " 成绩更高");
+        } else if (ret == 0) {
+            System.out.println("成绩相同");
+        } else {
+            System.out.println(s2.name + " 成绩更高");
+        }
+    }
+
+    public static void main10(String[] args) {
+        Student s1 = new Student("zhangsan", 18, 40.3);
+        Student s2 = new Student("lisi", 20, 80.4);
+
+//        if (s1 > s2) // 编译器：你要比啥？？引用之间可不允许比较
+        // 实现了 Comparable<Student>，告诉编译器怎么比，就可以比较了
+        compare1(s1, s2);
+
+        s1.score = 80.4;
+        compare1(s1, s2);
+
+        s1.score = s2.score + 10;
+        compare1(s1, s2);
+
+    }
+
+    public static void compareScore(Student s1, Student s2) {
+        ScoreComparator scoreComparator = new ScoreComparator();
+        int ret = scoreComparator.compare(s1, s2);
+        if (ret > 0) {
+            System.out.println(s1.name + " 成绩更高");
+        } else if (ret == 0) {
+            System.out.println("成绩相同");
+        } else {
+            System.out.println(s2.name + " 成绩更高");
+        }
+    }
+
+    public static void compareAge(Student s1, Student s2) {
+        AgeComparator ageComparator = new AgeComparator();
+        int ret = ageComparator.compare(s1, s2);
+        if (ret > 0) {
+            System.out.println(s1.name + " 年龄更大");
+        } else if (ret == 0) {
+            System.out.println("年龄相同");
+        } else {
+            System.out.println(s2.name + " 年龄更大");
+        }
+    }
+
+    public static void compareName(Student s1, Student s2) {
+        NameComparator nameComparator = new NameComparator();
+        int ret = nameComparator.compare(s1, s2);
+        if (ret > 0) {
+            System.out.println(s1.name + " 名字更大");
+        } else if (ret == 0) {
+            System.out.println("名字相同");
+        } else {
+            System.out.println(s2.name + " 名字更大");
+        }
+    }
+
+    public static void main11(String[] args) {
+        Student s1 = new Student("zhangsan", 18, 40.3);
+        Student s2 = new Student("lisi", 20, 80.4);
+
+        compareScore(s1, s2);
+        s1.score = s2.score;
+        compareScore(s1, s2);
+        s1.score = s2.score + 10;
+        compareScore(s1, s2);
+
+        compareAge(s1, s2);
+        s1.age = s2.age;
+        compareAge(s1, s2);
+        s1.age = s2.age + 10;
+        compareAge(s1, s2);
+
+        compareName(s1, s2);
+        s1.name = s2.name;
+        compareName(s1, s2);
+        s1.name = s2.name + "1";
+        compareName(s1, s2);
+    }
+
+    public static void bubbleSort(Comparable[] comparable) {
+        for (int i = 0; i < comparable.length - 1; i++) {
+            for (int j = 0; j < comparable.length -1 - i; j++) {
+                if (comparable[j].compareTo(comparable[j + 1]) > 0) {
+                    Comparable temp = comparable[j];
+                    comparable[j] = comparable[j + 1];
+                    comparable[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student("zhangsan", 18, 99.3);
+        Student s2 = new Student("l isi", 20, 82.4);
+        Student s3 = new Student("wangwu", 8, 73.9);
+        Student s4 = new Student("zhaoliu", 53, 41.5);
+
+        Student[] students = new Student[4];
+        students[0] = s1;
+        students[1] = s2;
+        students[2] = s3;
+        students[3] = s4;
+
+        // 默认用 comparable 接口的 compareTo 方法
+//        Arrays.sort(students);
+//        System.out.println(Arrays.toString(students));
+//
+//        Arrays.sort(students, new AgeComparator());
+//        System.out.println(Arrays.toString(students));
+
+        bubbleSort(students);
+        System.out.println(Arrays.toString(students));
     }
 
 }
